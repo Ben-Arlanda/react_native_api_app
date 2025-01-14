@@ -25,9 +25,9 @@ export default function NewsSearchApp() {
     if (!query) return;
     setLoading(true);
     try {
-      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const apiKey = process.env.EXPO_PUBLIC_API_KEY;
       const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiUrl}`,
+        `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`,
       );
       setArticles(response.data.articles);
     } catch (error) {
