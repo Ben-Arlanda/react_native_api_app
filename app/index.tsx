@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import axios from 'axios';
 
+interface Article {
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+}
+
 export default function NewsSearchApp() {
   const [query, setQuery] = useState('');
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([]);
 
   const fetchNews = async () => {
     const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -32,7 +39,7 @@ export default function NewsSearchApp() {
 
       {articles.map((article) => (
         <View
-          key={article.id}
+          key={article.url}
           className="p-4 mb-4 bg-gray-100 rounded-lg shadow-md"
         >
           <Text className="text-lg font-bold">{article.author}</Text>
