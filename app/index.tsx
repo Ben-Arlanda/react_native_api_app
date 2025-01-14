@@ -7,6 +7,9 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
+
+import { ArticleCard } from '@/components/ArticleCard';
+
 import axios from 'axios';
 
 interface Article {
@@ -55,15 +58,13 @@ export default function NewsSearchApp() {
         <ActivityIndicator size="large" color="#0000ff" className="mb-4" />
       )}
       {articles.map((article) => (
-        <View
+        <ArticleCard
           key={article.url}
-          className="p-4 mb-4 bg-gray-100 rounded-lg shadow-md"
-        >
-          <Text className="text-lg font-bold">{article.author}</Text>
-          <Text className="text-lg font-bold">{article.title}</Text>
-          <Text className="text-gray-700 mb-2">{article.description}</Text>
-          <Text className="text-blue-500 underline">{article.url}</Text>
-        </View>
+          author={article.author}
+          title={article.title}
+          description={article.description}
+          url={article.url}
+        />
       ))}
       {!loading && !articles.length && query && (
         <Text className="text-center text-gray-500">No results found.</Text>
